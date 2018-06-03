@@ -27,7 +27,7 @@ function employ() {
 	for (let i = 1; i <= 4; i++){
 		let a = prompt("Введите имя " + i + "-го сотрудника");
 		if(a != "" && a != null && isNaN(a))
-			mainList.employers.name[i] = i.toString() + " - " + a;
+			mainList.employers.name[i-1] = i.toString() + " - " + a;
 	}
 }
 
@@ -49,7 +49,10 @@ function chooseGoods(){
 chooseGoods();
 
 function discountSystem() {
-	return price * 0,8;
+	if(mainList.discount)
+		return price * 0,8;
+	else
+		return price;
 }
 
 function workTime(time){
