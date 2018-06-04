@@ -1,7 +1,7 @@
 let money,
 	name,
 	time,
-	price;
+	price = 1000;
 
 function start () {
  	money = prompt("Ваш бюджет на месяц?", 40000);
@@ -16,9 +16,9 @@ start();
 
 let mainList = {
 	budget: money,
-	shopNameame: name,
-	shopGoods: [],
+	shopName: name,
 	employers: {},
+	shopGoods: [],
 	open: true,
 	discount: false
 }
@@ -27,7 +27,7 @@ function employ() {
 	for (let i = 1; i <= 4; i++){
 		let a = prompt("Введите имя " + i + "-го сотрудника");
 		if(a != "" && a != null && isNaN(a))
-			mainList.employers.name[i-1] = i.toString() + " - " + a;
+			mainList.employers[1] = a;
 	}
 }
 
