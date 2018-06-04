@@ -29,6 +29,6 @@ function shortenStr (str) {
 			str = str.substr(0, 50) + "...";
 		}
 		return str;
-	}
+	} 
 }
 console.log(shortenStr("    awsfsdgsfdffffxxjkhkl;hkl;fytdftydbghdfhddhgdhhhhjllllllll         "));
