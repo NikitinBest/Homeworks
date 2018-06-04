@@ -43,4 +43,4 @@ function shortenStr (str) {
 		return str;
 	}
 }
-console.log(shortenStr("     awsfsdgsfdffffxxjkhkl;hkl;fytdftydbghdfhddhgdhhhhjllllllll         "));
+console.log(shortenStr("    awsfsdgsfdffffxxjkhkl;hkl;fytdftydbghdfhddhgdhhhhjllllllll         "));
