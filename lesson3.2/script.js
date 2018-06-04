@@ -8,7 +8,7 @@ for(let i = 0; i < str.length; i++){
 }
 console.log(str);
 
-str = str.substr(19, 4) + "оо";
+str = str.substr(19, 4) + "о";
 alert(str);
 
 let arr = [20, 33, 1, 'Человек', 2, 3];
@@ -24,19 +24,7 @@ function shortenStr (str) {
 	if((str === NaN) || str == null || str =="")
 		alert("Это не строка!");
 	else {
-		let start = -1;
-		let end = 0;
-		for(let i = 0; i < str.length && start == -1; i++){
-			if(str.charAt(i)!=" ")
-				start = i;
-		}
-		str = str.substr(start, str.length - start);
-
-		for(let i = str.length - 1; i >= 0  && end == 0; i--){
-			if(str.charAt(i)!=" ")
-				end = i;
-		}
-		str = str.substr(0, end + 1);
+		str.trim();
 		if(str.length > 50){
 			str = str.substr(0, 50) + "...";
 		}
