@@ -39,9 +39,8 @@ let mainList = {
 		do{
 			items = prompt("Перечислите через запятую товары", "");
 
-			if((typeof(items)) != 'string' || typeof(items) === null || items == '')
+			if((typeof(items)) != 'string' || typeof(items) === null || items == ''){
 				items = null;
-			else{
 				console.log("Некорректный ввод");
 			}
 		} while (items == null);
