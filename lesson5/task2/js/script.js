@@ -3,7 +3,7 @@ console.log(openBtn);
 
 let leftMenu = document.getElementsByClassName("main-info");
 let leftMenuItems = []
-for(let i = 0; i < 14; i++){
+for(let i = 1; i < 14; i += 2){
 	leftMenuItems[i] = leftMenu[0].children[i];
 }
 console.log(leftMenuItems);
