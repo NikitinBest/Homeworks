@@ -6,7 +6,8 @@ let openBtn = document.getElementById("open-btn"),
 	employersValue = document.getElementsByClassName("employers-value")[0],
 	discountValue = document.getElementsByClassName("discount-value")[0],
 	priceValue = document.getElementById("price");
-	discountCheck = document.getElementById("checkbox");
+	discountCheck = document.getElementById("checkBox");
+	discountCheckContent = document.getElementById("checkBoxContent");
 	isopenValue = document.getElementsByClassName("isopen-value")[0],
 
 	goodsItem = document.getElementsByClassName("goods-item"),
@@ -30,9 +31,42 @@ openBtn.addEventListener("click", () => {
  	}
 
  	budgetValue.textContent = money;
- 	nameValue.textContent = prompt("Название вашего магазина?", "Название").toUpperCase();
- 	mainList.shopName = name;	
+ 	let name = prompt("Название вашего магазина?", "Название").toUpperCase();
+	nameValue.textContent = name;
+ 	mainList.shopName = name;
+
+ 	for(let i = 0; i < goodsItem.length; i++)
+ 		goodsItem[i].disabled = false;
+ 	chooseItem.disabled = false;
+ 	timeValue.disabled = false;
+ 	for(let i = 0; i < staff.length; i++)
+ 		staff[i].disabled = false;
+ 	budgetBtn.disabled = false;
+ 	discountCheck.disabled = false;	
 });
+
+for(let i = 0; i < goodsItem.length; i++){
+	goodsItem[i].addEventListener("change", () => {
+		if(goodsItem[0].value != "" && goodsItem[1].value != "" && goodsItem[2].value != "" && goodsItem[3].value != "")
+			goodsBtn.disabled = false;
+		else
+			goodsBtn.disabled = true;
+
+});
+}
+
+for(let i = 0; i < staff.length; i++){
+	staff[i].addEventListener("change", () => {
+		if(staff[0].value != "" && staff[1].value != "" && staff[2].value != "")
+			employersBtn.disabled = false;
+		else
+			employersBtn.disabled = true;
+	});
+
+	staff[i].onkeypress = function (e) {
+		this.value = this.value.replace(/[-\.;":'а-яА-Я]/, "");
+	}
+}
 
 goodsBtn.addEventListener("click", () => {
 	for (let i = 0; i < goodsItem.length; i++){
@@ -105,14 +139,15 @@ employersBtn.addEventListener("click", () => {
 discountCheck.addEventListener("click",() => {
 	if(discountCheck.checked){
 		discountValue.style.backgroundColor = "green";
-		price.textContent = "Стоимость покупки: " + (price * 0.8);
-
+		priceValue.textContent = "Стоимость покупки: " + (price * 0.8);
+		mainList.discount = true;
 	} else {
 		discountValue.style.backgroundColor = "red";
-		price.textContent = "Стоимость покупки: " + (price);
-
+		priceValue.textContent = "Стоимость покупки: " + price;
+		mainList.discount = false;
 	}
 });
+
 
 let mainList = {
 	budget: money,
@@ -122,10 +157,6 @@ let mainList = {
 	open: false,
 	discount: false,
 	shopItems: [],
-	makeDiscount: function makeDiscount() {
-		if(mainList.discount)
-			price *= 0.8;
-	}
 }
 
 /*start();
