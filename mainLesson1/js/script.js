@@ -64,7 +64,7 @@ for(let i = 0; i < staff.length; i++){
 	});
 
 	staff[i].onkeypress = function (e) {
-		this.value = this.value.replace(/[-\.;":'а-яА-Я]/, "");
+		this.value = this.value.replace(/([А-ЯЁа-яё]+)/g, "");
 	}
 }
 
