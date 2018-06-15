@@ -53,7 +53,7 @@ for(let i = 0; i < goodsItem.length; i++){
 			goodsBtn.disabled = true;
 
 });
-}
+} 
 
 for(let i = 0; i < staff.length; i++){
 	staff[i].addEventListener("change", () => {
