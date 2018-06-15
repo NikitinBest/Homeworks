@@ -63,9 +63,12 @@ for(let i = 0; i < staff.length; i++){
 			employersBtn.disabled = true;
 	});
 
-	staff[i].onkeypress = function (e) {
-		this.value = this.value.replace(/([А-ЯЁа-яё]+)/g, "");
-	}
+	staff[i].addEventListener('keypress', function() {
+        setTimeout(() => {
+            var res = /[^а-яА-Я ]/g.exec(this.value);
+            this.value = this.value.replace(res, '');
+        }, 0);
+    });
 }
 
 goodsBtn.addEventListener("click", () => {
