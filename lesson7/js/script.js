@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		tabContent = document.getElementsByClassName("info-tabcontent"),
 		info = document.getElementsByClassName("info-header")[0]; //  Родитель для табов
 
+
 	function hideTabContent (a) {
 		for(let i = a; i < tabContent.length; i++){
 			tabContent[i].classList.remove("show");
@@ -24,7 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	info.addEventListener("click", (event) => {
 		let target = event.target;
-		if(target.className = "info-header-tab"){
+		if(target.className == "info-header-tab"){
 			for(let i = 0; i < tab.length; i++){
 				if(tab[i] == target){
 					showTabContent(i);
@@ -36,7 +37,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 	//Таймер
-	let deadLine = '2018-06-18';
+	let deadLine = '2018-06-19';
 
 	function getTimeRemaining(endtime){
 		let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -90,4 +91,27 @@ window.addEventListener("DOMContentLoaded", () => {
 	};
 
 	setClock("timer", deadLine);
+
+
+	//Modal
+	let more = document.getElementById("about"),
+		overlay = document.querySelector(".overlay"),
+		close = document.querySelector(".popup-close");
+
+	more.addEventListener("click", function (event) {
+		console.log('Привет!')
+		let target = event.target;
+		if(target.className == "description-btn" || target.className == "more"){
+			target.classList.add("more-splash");
+			overlay.style.display = "block";
+			document.body.style.overflow = 'hidden'; //Прокрутка
+		}
+	});
+
+	close.addEventListener("click", function(){
+		overlay.style.display = "none";
+		more.classList.remove("more-splash");
+		document.body.style.overflow = '';
+
+	});
 });
