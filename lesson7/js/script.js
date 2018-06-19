@@ -97,20 +97,20 @@ window.addEventListener("DOMContentLoaded", () => {
 	let more = document.getElementById("about"),
 		overlay = document.querySelector(".overlay"),
 		close = document.querySelector(".popup-close");
+	var target;
 
 	more.addEventListener("click", function (event) {
-		console.log('Привет!')
-		let target = event.target;
+		target = event.target;
 		if(target.className == "description-btn" || target.className == "more"){
 			target.classList.add("more-splash");
-			overlay.style.display = "block";
+			setTimeout(()=>{overlay.style.display = "block"}, 800);
 			document.body.style.overflow = 'hidden'; //Прокрутка
 		}
 	});
 
 	close.addEventListener("click", function(){
 		overlay.style.display = "none";
-		more.classList.remove("more-splash");
+		target.classList.remove("more-splash");
 		document.body.style.overflow = '';
 
 	});
