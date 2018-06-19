@@ -1,11 +1,7 @@
-let user = {
-		value: document.getElementById('age').value,
-		name: "Иван",
-		surname: "Иванов",
-		showUser: function() {
-         	alert("Пользователь " + this.surname + " " + this.name + ", его возраст " + this.value);
-		}
- 	}
-
+let age = document.getElementById('age');
  
-user.showUser();
+function showUser(surname, name) {
+         alert("Пользователь " + surname + " " + name + ", его возраст " + this.value);
+}
+ 
+showUser.call(age, "Иванов", "Иван");
