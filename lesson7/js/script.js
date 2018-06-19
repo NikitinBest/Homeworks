@@ -87,7 +87,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				}
 			};
 
-			updateClock;
+			updateClock; 
 	};
 
 	setClock("timer", deadLine);
