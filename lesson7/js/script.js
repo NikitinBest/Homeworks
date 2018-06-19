@@ -166,8 +166,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	dotsWrap.addEventListener("click", function(event){
 		let target = event.target;
 		for(let i = 0; i < dot.length; i++){
-			if(target.classList.contains("dot") && target == dot[i-1]);
-				currentSlide(i);
+			if(target.classList.contains("dot") && target == dot[i]);
+				currentSlide(i + 1);
 		}
 	});
 });
