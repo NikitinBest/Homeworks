@@ -118,10 +118,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	//Slider
 	let slideIndex = 1;
-		slides = document.getElementsByClassName("slider-item");
-		prev = document.querySelector(".prev");
-		next = document.querySelector(".next");
-		dotsWrap = document.querySelector(".slider-dots");
+		slides = document.getElementsByClassName("slider-item"),
+		prev = document.querySelector(".prev"),
+		next = document.querySelector(".next"),
+		dotsWrap = document.querySelector(".slider-dots"),
 		dot = document.getElementsByClassName("dot");
 
 	showSlides(slideIndex);
@@ -166,8 +166,62 @@ window.addEventListener("DOMContentLoaded", () => {
 	dotsWrap.addEventListener("click", function(event){
 		let target = event.target;
 		for(let i = 0; i < dot.length; i++){
-			if(target.classList.contains("dot") && target == dot[i]);
+			if(target.classList.contains("dot") && target == dot[i])
 				currentSlide(i + 1);
 		}
 	});
+
+
+	//Calc
+
+	let persons = document.getElementsByClassName("counter-block-input")[0],
+		restDays = document.getElementsByClassName("counter-block-input")[1],
+		place =  document.getElementById("select"),
+		totalValue = document.getElementById("total");
+		personsSum = 0,
+		daysSum = 0,
+		total = 0,
+		calc = document.getElementById("price");
+
+
+	totalValue.innerHTML = 0;
+
+	persons.addEventListener("change", function () {
+
+		personsSum = +this.value;
+		total = (daysSum * personsSum) * 4000;
+
+		if(persons.value == "" || restDays.value == "")
+			totalValue.innerHTML = 0;
+		else
+			totalValue.innerHTML = total * place.options[place.selectedIndex].value;
+	});
+
+	restDays.addEventListener("change", function () {
+
+		daysSum = +this.value;
+		total = (daysSum + personsSum) * 4000;
+		if(persons.value == "" || restDays.value == "")
+			totalValue.innerHTML = 0;
+		else
+			totalValue.innerHTML = total * place.options[place.selectedIndex].value;
+	});
+
+	place.addEventListener("change", function(){
+
+		if(persons.value == "" || restDays.value == ""){
+			totalValue.innerHTML = 0;
+		}else{
+			let a = total;
+			totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+		}
+	});
+
+	calc.addEventListener('keypress', function() {
+        setTimeout(() => {
+            var res = /[^0-9]/g.exec(this.value);
+            this.value = this.value.replace(res, '');
+        }, 0);
+    });
+
 });
