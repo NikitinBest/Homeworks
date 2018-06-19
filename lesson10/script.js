@@ -1,6 +1,7 @@
 class Options {
 
-	constructor(height = "height: 120px", width = "width: 100px", bg = "background: green", fontSize = "font-size: 11pt", textAlign = "text-align: center"){
+	constructor(height = "120px", width = "100px", bg = "green", 	
+			fontSize = "11pt", textAlign = "center") {
 		this.height = height;
 		this.width = width;
 		this.bg = bg;
@@ -11,9 +12,9 @@ class Options {
 	create () {
 		var div = document.createElement("div");
 		div.textContent = "Привет!";
-		div.style.cssText = `${this.height}; \ ${this.width}; \ ${this.bg}; \ ${this.fontSize}; \ ${this.textAlign}; \ `;
+		div.style.cssText = `width: ${this.width}; height: ${this.height}; background: ${this.background}; font-size: ${this.fontSize}; text-align: ${this.textAlign}; `;
 	}
 }
 
-let opt = new Options("height: 140px", "width: 120px", "background: green", "font-size: 200%", "text-align: center");
+let opt = new Options("140px", "120px", "green", "200%", "center");
 opt.create();
