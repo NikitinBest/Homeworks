@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		info = document.getElementsByClassName("info-header")[0]; //  Родитель для табов
 
 
-	function hideTabContent (a) {
+	let hideTabContent = (a) => {
 		for(let i = a; i < tabContent.length; i++){
 			tabContent[i].classList.remove("show");
 			tabContent[i].classList.add("hide");
@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	hideTabContent(1);
 
-	function showTabContent (b) {
+	let showTabContent = (b) => {
 		if (tabContent[b].classList.contains("hide")) {
 			hideTabContent(0);
 			tabContent[b].classList.remove("hide");
@@ -37,9 +37,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 	//Таймер
-	let deadLine = '2018-06-19';
+	let deadLine = '2018-06-20';
 
-	function getTimeRemaining(endtime){
+	let getTimeRemaining = (endtime) => {
 		let t = Date.parse(endtime) - Date.parse(new Date()),
 			seconds = Math.floor( (t/1000) % 60),
 			minutes = Math.floor( (t/1000/60) % 60),
@@ -52,7 +52,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				"seconds": seconds
 			};
 	};
-	function setClock(id, endtime) { //id - id элемента в HTML'
+	let setClock = (id, endtime) => { //id - id элемента в HTML'
 	
 		let timeInterval = setInterval(updateClock, 1000);
 
@@ -61,23 +61,23 @@ window.addEventListener("DOMContentLoaded", () => {
 			minutes = timer.querySelector(".minutes"),
 			seconds = timer.querySelector(".seconds");
 
-			function updateClock(){
+			function updateClock () {
 
-				function addNull (num){
+				let addNull = (num) => {
 					if(num/10>=1 || num < 0)
 						return num;
 					else
 						return "0" + num;
 				}
 
-				function update(){
+				let t = getTimeRemaining(endtime);
 
+				let update = () => {
 					hours.innerHTML = addNull(t.hours);	
 					minutes.innerHTML = addNull(t.minutes);
 					seconds.innerHTML = addNull(t.seconds);
 				}
 
-				let t = getTimeRemaining(endtime);
 				update();
 
 				if(t.total <= 0){
@@ -87,7 +87,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				}
 			};
 
-			updateClock();
+			updateClock;
 	};
 
 	setClock("timer", deadLine);
@@ -99,7 +99,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		close = document.querySelector(".popup-close");
 	var target;
 
-	more.addEventListener("click", function (event) {
+	more.addEventListener("click", (event) => {
 		target = event.target;
 		if(target.className == "description-btn" || target.className == "more"){
 			target.classList.add("more-splash");
@@ -108,7 +108,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-	close.addEventListener("click", function(){
+	close.addEventListener("click", () => {
 		overlay.style.display = "none";
 		target.classList.remove("more-splash");
 		document.body.style.overflow = '';
