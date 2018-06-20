@@ -221,7 +221,7 @@ window.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
 	        target = event.target;
 	       	if(target == persons || target == restDays){
-		        var res = /[^0-9]/g.exec(this.value);
+		        var res = /[^0-9]/g.exec(target.value);
 		        target.value = target.value.replace(res, '');
 	        }
         }, 0);
