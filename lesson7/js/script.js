@@ -217,10 +217,13 @@ window.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-	calc.addEventListener('keypress', function() {
+	calc.addEventListener('keypress', function(event) {
         setTimeout(() => {
-            var res = /[^0-9]/g.exec(this.value);
-            this.value = this.value.replace(res, '');
+	        target = event.target;
+	       	if(target == persons || target == restDays){
+		        var res = /[^0-9]/g.exec(this.value);
+		        target.value = target.value.replace(res, '');
+	        }
         }, 0);
     });
 
