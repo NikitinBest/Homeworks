@@ -65,11 +65,11 @@ window.addEventListener("DOMContentLoaded", () => {
 		female = document.getElementById("female");
 
 	male.addEventListener("oncheck", ()=>{
-		slideSex = 0;
+		slideSex = 1;
 		showSlides(slideIndex);
 	});
 	female.addEventListener("oncheck", ()=>{
-		slideSex = 1;
+		slideSex = 0;
 		showSlides(slideIndex);
 	});
 });
