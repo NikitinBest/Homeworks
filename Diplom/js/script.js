@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function plusSlides(n){
-		showSlides(slideIndex += n)
+		showSlides(slideIndex += n);
 	}
 
 	prev.addEventListener("click", () =>{
@@ -75,22 +75,42 @@ window.addEventListener("DOMContentLoaded", () => {
 		showSlides(slideIndex = 1);
 	});
 
-	//Create candidate
+
+	//Create candidate & initialize cards window
 
 	let candidate = document.getElementsByClassName("main-cards-item"),
-		readyBtn = document.getElementById("ready");
-		cards = document.querySelector(".main-cards");
+		readyBtn = document.getElementById("ready"),
+		cards = document.querySelector(".main-cards"),
+		name = document.getElementById("name"),
+		age = document.getElementById("age"),
+		views = document.getElementById("select"),
+		bio = document.getElementById("bio");
 
 	readyBtn.addEventListener("click", ()=>{
 
  		displayCustomize();
 		main.style.display = "block";
 		candidate[0].classList.remove("main-cards-item-active");
+		createCandidate();
 
-		//candidate[2] = document.createElement("main-cards-item");
-		document.createElement(candidate[2] = candidate[0]);
-		cards.appendChild(candidate[2]);
 	});
+
+	function createCandidate(){
+
+		cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
+
+		candidate[2].children[0].children[0].style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`; //image
+		candidate[2].children[0].children[0].style.backgroundSize = '70%';
+
+		candidate[2].children[0].children[1].children[0].textContent = '0%'; // result
+		candidate[2].children[0].children[1].children[1].children[0].style.height = '0%';
+
+		candidate[2].children[1].textContent = name.value;
+		candidate[2].children[2].textContent = age.value + " лет";
+		candidate[2].children[3].textContent = (slideSex == 1) ? "Мужской" : "Женский";
+		candidate[2].children[4].textContent = views.options[views.selectedIndex].value;
+		candidate[2].children[5].textContent = bio.value;
+	}
 
 
 });
