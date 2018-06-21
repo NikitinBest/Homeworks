@@ -86,7 +86,9 @@ window.addEventListener("DOMContentLoaded", () => {
  		displayCustomize();
 		main.style.display = "block";
 		candidate[0].classList.remove("main-cards-item-active");
-		candidate[2] = document.createElement("main-cards-item");
+
+		//candidate[2] = document.createElement("main-cards-item");
+		document.createElement(candidate[2] = candidate[0]);
 		cards.appendChild(candidate[2]);
 	});
 
