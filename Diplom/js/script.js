@@ -120,12 +120,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
 		newName.textContent = name.value;
 		newAge.textContent = age.value;
-		if(age.value % 10 == 1)
+		if (age.value % 10 == 1) {
+			newAge.textContent += " год";
+		} else if (age.value % 10 > 1 && age.value % 10 < 5){
+			newAge.textContent += " года";			
+		} else {
+			newAge.textContent += " лет";			
+		}
+
 
 		newSex.textContent = (slideSex == 1) ? "Мужской" : "Женский";
 		newViews.textContent = views.options[views.selectedIndex].value;
 		newBio.textContent = bio.value;
-	}
-
+		}
 
 });
