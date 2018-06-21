@@ -86,24 +86,33 @@ window.addEventListener("DOMContentLoaded", () => {
 		views = document.getElementById("select"),
 		bio = document.getElementById("bio");
 
+	cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
+
+		progressBar1 = document.querySelector(".progress-bar-1"),
+		progressBar2 = document.querySelector(".progress-bar-2"),
+		progressBar3 = candidate[2].children[0].children[1].children[1].children[0];
+
+
+
 	readyBtn.addEventListener("click", ()=>{
 
  		displayCustomize();
 		main.style.display = "block";
+
 		candidate[0].classList.remove("main-cards-item-active");
 		createCandidate();
+
 
 	});
 
 	function createCandidate(){
 
-		cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
 
 		candidate[2].children[0].children[0].style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`; //image
 		candidate[2].children[0].children[0].style.backgroundSize = '70%';
 
 		candidate[2].children[0].children[1].children[0].textContent = '0%'; // result
-		candidate[2].children[0].children[1].children[1].children[0].style.height = '0%';
+		progressBar3.style.height = '0%';
 
 		candidate[2].children[1].textContent = name.value;
 		candidate[2].children[2].textContent = age.value + " лет";
