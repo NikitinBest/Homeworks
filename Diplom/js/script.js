@@ -108,15 +108,23 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 	function createCandidate(){
-		
-		candidate[2].children[0].children[0].style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`; //image
-		candidate[2].children[0].children[0].style.backgroundSize = '70%';
+		let newImage = candidate[2].children[0].children[0],
+			newName = candidate[2].children[1],
+			newAge = candidate[2].children[2],
+			newSex = candidate[2].children[3],
+			newViews = candidate[2].children[4],
+			newBio = candidate[2].children[5];
 
-		candidate[2].children[1].textContent = name.value;
-		candidate[2].children[2].textContent = age.value + " лет";
-		candidate[2].children[3].textContent = (slideSex == 1) ? "Мужской" : "Женский";
-		candidate[2].children[4].textContent = views.options[views.selectedIndex].value;
-		candidate[2].children[5].textContent = bio.value;
+		newImage.style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`; //image
+		newImage.style.backgroundSize = '70%';
+
+		newName.textContent = name.value;
+		newAge.textContent = age.value;
+		if(age.value % 10 == 1)
+
+		newSex.textContent = (slideSex == 1) ? "Мужской" : "Женский";
+		newViews.textContent = views.options[views.selectedIndex].value;
+		newBio.textContent = bio.value;
 	}
 
 
