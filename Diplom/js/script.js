@@ -1,6 +1,10 @@
 window.addEventListener("DOMContentLoaded", () => {
 	let overlay = document.querySelector(".overlay"),
-		main = document.querySelector(".main");
+		main = document.querySelector(".main"),
+		custom = document.getElementsByClassName("custom")[0],
+		customInfo = document.getElementsByClassName("custom-info")[0],
+		customChar = document.querySelector(".custom-char"),
+		customStyle = document.querySelector(".custom-style");
 
 
 	//Hide overlay & show custom page 
@@ -10,16 +14,62 @@ window.addEventListener("DOMContentLoaded", () => {
 
 		overlay.style.display = "none"; //Убрать модальное окно
 		main.style.display = "none"; //Убрать карточки
-
-		let custom = document.getElementsByClassName("custom")[0];
+ 
+ 		//Show custom page
 		custom.style.display = "flex";
-		let customInfo = document.getElementsByClassName("custom-info")[0];
 		customInfo.style.display = "block";
-		let customChar = document.querySelector(".custom-char");
 		customChar.style.display = "block";
-		let customStyle = document.querySelector(".custom-style");
 		customStyle.style.display = "block";
 
 	});
 
+
+	//Customize slider
+
+	let slideIndex = 1;
+		slideSex = 1; // 0 - woman, 1 - man
+		prev = document.querySelector(".prev"),
+		next = document.querySelector(".next"),
+		personChar = document.querySelector(".person-easy"),
+		personPreview = document.querySelector(".preview");
+
+	showSlides(slideIndex);
+
+	function showSlides (n) {
+		if(n > 4){
+			slideIndex = 1;
+		};
+
+		if(n < 1){
+			slideIndex = 4;
+		};
+
+		personChar.style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`;
+		personPreview.style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`;
+	}
+
+	function plusSlides(n){
+		showSlides(slideIndex += n)
+	}
+
+	prev.addEventListener("click", () =>{
+		plusSlides(-1);
+	});
+
+	next.addEventListener("click", () =>{
+		plusSlides(1);
+	});
+
+	//Slider Sex
+	let male = document.getElementById("male"),
+		female = document.getElementById("female");
+
+	male.addEventListener("oncheck", ()=>{
+		slideSex = 0;
+		showSlides(slideIndex);
+	});
+	female.addEventListener("oncheck", ()=>{
+		slideSex = 1;
+		showSlides(slideIndex);
+	});
 });
