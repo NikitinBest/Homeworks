@@ -86,12 +86,11 @@ window.addEventListener("DOMContentLoaded", () => {
 		views = document.getElementById("select"),
 		bio = document.getElementById("bio");
 
+	candidate[0].classList.remove("main-cards-item-active");
 	cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
 
-		progressBar1 = document.querySelector(".progress-bar-1"),
-		progressBar2 = document.querySelector(".progress-bar-2"),
-		progressBar3 = candidate[2].children[0].children[1].children[1].children[0];
-
+	let progressBar = document.querySelectorAll(".progress-bar"),
+		resultCount = document.getElementsByClassName("result-count");
 
 
 	readyBtn.addEventListener("click", ()=>{
@@ -99,9 +98,12 @@ window.addEventListener("DOMContentLoaded", () => {
  		displayCustomize();
 		main.style.display = "block";
 
-		candidate[0].classList.remove("main-cards-item-active");
 		createCandidate();
 
+		for(let i = 0; i < resultCount.length; i++){
+			resultCount[i].textContent = '0%';
+			progressBar[i].style.height = '0%';
+		}
 
 	});
 
@@ -110,9 +112,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
 		candidate[2].children[0].children[0].style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`; //image
 		candidate[2].children[0].children[0].style.backgroundSize = '70%';
-
-		candidate[2].children[0].children[1].children[0].textContent = '0%'; // result
-		progressBar3.style.height = '0%';
 
 		candidate[2].children[1].textContent = name.value;
 		candidate[2].children[2].textContent = age.value + " лет";
