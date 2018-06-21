@@ -28,8 +28,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	//Customize slider
 
-	let slideIndex = 1;
-		slideSex = 1; // 0 - woman, 1 - man
+	let slideIndex = 1,
+		slideSex = 1, // 0 - woman, 1 - man
 		prev = document.querySelector(".prev"),
 		next = document.querySelector(".next"),
 		personChar = document.querySelector(".person-easy"),
@@ -135,4 +135,15 @@ window.addEventListener("DOMContentLoaded", () => {
 		newBio.textContent = bio.value;
 		}
 
+
+	//reset button
+	resetBtn = document.getElementById("reset");
+	resetBtn.addEventListener("click", ()=>{
+
+		candidate[2].remove();
+		overlay.style.display = "none"; //Убрать модальное окно
+		main.style.display = "none"; //Убрать карточки
+ 
+ 		displayCustomize("flex", "block");		
+	});
 });
