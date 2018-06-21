@@ -108,8 +108,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 	function createCandidate(){
-
-
+		
 		candidate[2].children[0].children[0].style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`; //image
 		candidate[2].children[0].children[0].style.backgroundSize = '70%';
 
