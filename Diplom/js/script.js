@@ -74,5 +74,5 @@ window.addEventListener("DOMContentLoaded", () => {
 		showSlides(slideIndex = 1);
 	});
 
-	
+	//
 });
