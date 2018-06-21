@@ -17,6 +17,8 @@ window.addEventListener("DOMContentLoaded", () => {
 		customInfo.style.display = "block";
 		let customChar = document.querySelector(".custom-char");
 		customChar.style.display = "block";
+		let customStyle = document.querySelector(".custom-style");
+		customStyle.style.display = "block";
 
 	});
 
