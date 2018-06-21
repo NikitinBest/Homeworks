@@ -9,18 +9,20 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	//Hide overlay & show custom page 
 
+	function displayCustomize(value1 = "none", value2 = "none"){
+		custom.style.display = value1;
+		customInfo.style.display = value2;
+		customChar.style.display = value2;
+		customStyle.style.display = value2;		
+	}
+
 	popupBtn = document.getElementById("popup-btn");
 	popupBtn.addEventListener("click", ()=>{
 
 		overlay.style.display = "none"; //Убрать модальное окно
 		main.style.display = "none"; //Убрать карточки
  
- 		//Show custom page
-		custom.style.display = "flex";
-		customInfo.style.display = "block";
-		customChar.style.display = "block";
-		customStyle.style.display = "block";
-
+ 		displayCustomize("flex", "block");
 	});
 
 
@@ -64,7 +66,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	let male = document.getElementById("male"),
 		female = document.getElementById("female");
 
-		console.log(male);
 	male.addEventListener("change", ()=>{
 		slideSex = 1;
 		showSlides(slideIndex = 1);
@@ -74,5 +75,20 @@ window.addEventListener("DOMContentLoaded", () => {
 		showSlides(slideIndex = 1);
 	});
 
-	//
+	//Create candidate
+
+	let candidate = document.getElementsByClassName("main-cards-item"),
+		readyBtn = document.getElementById("ready");
+		cards = document.querySelector(".main-cards");
+
+	readyBtn.addEventListener("click", ()=>{
+
+ 		displayCustomize();
+		main.style.display = "block";
+		candidate[0].classList.remove("main-cards-item-active");
+		candidate[2] = document.createElement("main-cards-item");
+		cards.appendChild(candidate[2]);
+	});
+
+
 });
