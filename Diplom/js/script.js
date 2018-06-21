@@ -64,12 +64,15 @@ window.addEventListener("DOMContentLoaded", () => {
 	let male = document.getElementById("male"),
 		female = document.getElementById("female");
 
-	male.addEventListener("oncheck", ()=>{
+		console.log(male);
+	male.addEventListener("change", ()=>{
 		slideSex = 1;
-		showSlides(slideIndex);
+		showSlides(slideIndex = 1);
 	});
-	female.addEventListener("oncheck", ()=>{
+	female.addEventListener("change", ()=>{
 		slideSex = 0;
-		showSlides(slideIndex);
+		showSlides(slideIndex = 1);
 	});
+
+	
 });
