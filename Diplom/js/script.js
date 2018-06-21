@@ -83,11 +83,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		cards = document.querySelector(".main-cards");
 
 	candidate[0].classList.remove("main-cards-item-active");
-	cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
-
-	let progressBar = document.querySelectorAll(".progress-bar"),
-		resultCount = document.getElementsByClassName("result-count");
-
 
 	readyBtn.addEventListener("click", ()=>{
 
@@ -95,6 +90,9 @@ window.addEventListener("DOMContentLoaded", () => {
 		main.style.display = "block";
 
 		createCandidate();
+
+		let progressBar = document.querySelectorAll(".progress-bar"),
+			resultCount = document.getElementsByClassName("result-count");
 
 		for(let i = 0; i < resultCount.length; i++){
 			resultCount[i].textContent = '0%';
@@ -104,6 +102,9 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 	function createCandidate(){
+
+		cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
+
 		let newImage = candidate[2].children[0].children[0],
 			newName = candidate[2].children[1],
 			newAge = candidate[2].children[2],
