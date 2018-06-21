@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		main = document.querySelector(".main");
 
 
-	//Create candidate
+	//Hide overlay & show custom page 
 
 	popupBtn = document.getElementById("popup-btn");
 	popupBtn.addEventListener("click", ()=>{
