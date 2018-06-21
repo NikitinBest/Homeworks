@@ -227,4 +227,11 @@ window.addEventListener("DOMContentLoaded", () => {
         }, 0);
     });
 
+	//Form
+	let message = new new Object();
+	message.loading = "Загрузка...";
+	message.success = "Спасибо! Скоро мы свяжемся с вами";
+	message.failure = "Что-то пошло не так...";
+
+	
 });
