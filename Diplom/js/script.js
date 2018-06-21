@@ -80,11 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	let candidate = document.getElementsByClassName("main-cards-item"),
 		readyBtn = document.getElementById("ready"),
-		cards = document.querySelector(".main-cards"),
-		name = document.getElementById("name"),
-		age = document.getElementById("age"),
-		views = document.getElementById("select"),
-		bio = document.getElementById("bio");
+		cards = document.querySelector(".main-cards");
 
 	candidate[0].classList.remove("main-cards-item-active");
 	cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
@@ -113,7 +109,11 @@ window.addEventListener("DOMContentLoaded", () => {
 			newAge = candidate[2].children[2],
 			newSex = candidate[2].children[3],
 			newViews = candidate[2].children[4],
-			newBio = candidate[2].children[5];
+			newBio = candidate[2].children[5],
+			name = document.getElementById("name"),
+			age = document.getElementById("age"),
+			views = document.getElementById("select"),
+			bio = document.getElementById("bio");
 
 		newImage.style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`; //image
 		newImage.style.backgroundSize = '70%';
