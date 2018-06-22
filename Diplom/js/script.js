@@ -146,8 +146,10 @@ window.addEventListener("DOMContentLoaded", () => {
 			newViews = candidate[2].children[4],
 			newBio = candidate[2].children[5];
 
-		newImage.style.backgroundImage = `url(./img/construct-${slideIndex + sex*4}.png)`; //image
-		newImage.style.backgroundSize = '70%';
+		newImage.classList.remove("photo-1");
+		newImage.style.backgroundImage = `url("./img/construct-${slideIndex + sex*4}.png")`; //image
+		newImage.style.height = '195px';
+		newImage.style.width = '90px';
 
 		newName.textContent = name.value;
 		newAge.textContent = age.value;
