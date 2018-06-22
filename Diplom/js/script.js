@@ -9,31 +9,56 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	//Hide overlay & show custom page 
 
-	function displayCustomize(value1 = "none", value2 = "none"){
-		custom.style.display = value1;
-		customInfo.style.display = value2;
-		customChar.style.display = value2;
-		customStyle.style.display = value2;		
+	function showCustomize(show){
+		if(show){
+			custom.style.display = "flex";
+			customInfo.style.display = "block";
+			customChar.style.display = "block";
+			customStyle.style.display = "block";
+			main.style.display = "none";
+		} else {
+			custom.style.display = "none";
+			customInfo.style.display = "none";
+			customChar.style.display = "none";
+			customStyle.style.display = "none";
+			main.style.display = "block";
+		}
+
 	}
 
-	popupBtn = document.getElementById("popup-btn");
-	popupBtn.addEventListener("click", ()=>{
+	let name = document.getElementById("name"),
+		age = document.getElementById("age"),
+		male = document.getElementById("male"),
+		female = document.getElementById("female"),
+		views = document.getElementById("select"),
+		bio = document.getElementById("bio"),
+		sex = 1, // 0 - woman, 1 - man
+		slideIndex = 1;
 
-		overlay.style.display = "none"; //Убрать модальное окно
-		main.style.display = "none"; //Убрать карточки
- 
- 		displayCustomize("flex", "block");
-	});
+	function initCustomize(){
 
+		function clearCustomize(){
+			name.value = "";
+			age.value = "";
+			male.checked = true;
+			views.selectedIndex = 0;
+			bio.value = "";
+ 			sex = 1;
+ 			slideIndex = 1;
+			showSlides(slideIndex);
+		}
 
-	//Customize slider
+		clearCustomize();
+ 		showCustomize(true);
+	}
 
-	let slideIndex = 1,
-		slideSex = 1, // 0 - woman, 1 - man
-		prev = document.querySelector(".prev"),
+	//Slider
+
+	let prev = document.querySelector(".prev"),
 		next = document.querySelector(".next"),
 		personChar = document.querySelector(".person-easy"),
 		personPreview = document.querySelector(".preview");
+
 
 	showSlides(slideIndex);
 
@@ -46,8 +71,8 @@ window.addEventListener("DOMContentLoaded", () => {
 			slideIndex = 4;
 		};
 
-		personChar.style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`;
-		personPreview.style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`;
+		personChar.style.backgroundImage = `url(./img/construct-${slideIndex + sex*4}.png)`;
+		personPreview.style.backgroundImage = `url(./img/construct-${slideIndex + sex*4}.png)`;
 	}
 
 	function plusSlides(n){
@@ -62,61 +87,66 @@ window.addEventListener("DOMContentLoaded", () => {
 		plusSlides(1);
 	});
 
-	//Slider Sex
-	let male = document.getElementById("male"),
-		female = document.getElementById("female");
-
 	male.addEventListener("change", ()=>{
-		slideSex = 1;
+		sex = 1;
 		showSlides(slideIndex = 1);
 	});
+
 	female.addEventListener("change", ()=>{
-		slideSex = 0;
+		sex = 0;
 		showSlides(slideIndex = 1);
 	});
 
 
-	//Create candidate & initialize cards window
+	popupBtn = document.getElementById("popup-btn");
+	popupBtn.addEventListener("click", ()=>{
 
-	let candidate = document.getElementsByClassName("main-cards-item"),
-		readyBtn = document.getElementById("ready"),
-		cards = document.querySelector(".main-cards");
-
-	candidate[0].classList.remove("main-cards-item-active");
-
-	readyBtn.addEventListener("click", ()=>{
-
- 		displayCustomize();
-		main.style.display = "block";
-
-		createCandidate();
-
-		let progressBar = document.querySelectorAll(".progress-bar"),
-			resultCount = document.getElementsByClassName("result-count");
-
-		for(let i = 0; i < resultCount.length; i++){
-			resultCount[i].textContent = '0%';
-			progressBar[i].style.height = '0%';
-		}
+		overlay.style.display = "none"; //Убрать модальное окно
+ 
+ 		initCustomize(true);
 
 	});
+
+	//init Main page
+	let candidate = document.getElementsByClassName("main-cards-item"),
+		cards = document.querySelector(".main-cards"),	
+		progressBar = document.querySelectorAll(".progress-bar"),
+		resultCount = document.getElementsByClassName("result-count"),
+		res = [];
+
+
+	function initMain(){
+ 		showCustomize(false);
+
+		for(let i = 0; i < resultCount.length; i++)
+			setResult(0, i);
+		res = [];
+		for(let i = 0; i < resultCount.length; i++){
+			candidate[i].classList.remove("main-cards-item-active");			
+		}
+		createCandidate();
+	}
+
+	function setResult (value, i){
+		resultCount[i].textContent = value + '%';
+		progressBar[i].style.height = value + '%';
+	}
 
 	function createCandidate(){
-
-		cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
+		if(!candidate[2]){
+			cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
+			progressBar = document.querySelectorAll(".progress-bar"),
+			resultCount = document.getElementsByClassName("result-count");
+		}
 
 		let newImage = candidate[2].children[0].children[0],
 			newName = candidate[2].children[1],
 			newAge = candidate[2].children[2],
 			newSex = candidate[2].children[3],
 			newViews = candidate[2].children[4],
-			newBio = candidate[2].children[5],
-			name = document.getElementById("name"),
-			age = document.getElementById("age"),
-			views = document.getElementById("select"),
-			bio = document.getElementById("bio");
+			newBio = candidate[2].children[5];
 
-		newImage.style.backgroundImage = `url(./img/construct-${slideIndex + slideSex*4}.png)`; //image
+		newImage.style.backgroundImage = `url(./img/construct-${slideIndex + sex*4}.png)`; //image
 		newImage.style.backgroundSize = '70%';
 
 		newName.textContent = name.value;
@@ -129,21 +159,54 @@ window.addEventListener("DOMContentLoaded", () => {
 			newAge.textContent += " лет";			
 		}
 
-
-		newSex.textContent = (slideSex == 1) ? "Мужской" : "Женский";
+		newSex.textContent = (sex == 1) ? "Мужской" : "Женский";
 		newViews.textContent = views.options[views.selectedIndex].value;
 		newBio.textContent = bio.value;
-		}
+	}
 
+	readyBtn = document.getElementById("ready");
+	readyBtn.addEventListener("click", initMain);
 
-	//reset button
 	resetBtn = document.getElementById("reset");
-	resetBtn.addEventListener("click", ()=>{
+	resetBtn.addEventListener("click", initCustomize);
 
-		candidate[2].remove();
-		overlay.style.display = "none"; //Убрать модальное окно
-		main.style.display = "none"; //Убрать карточки
- 
- 		displayCustomize("flex", "block");		
+	//Calc results
+	votingBtn = document.getElementById("voting");
+	votingBtn.addEventListener("click", ()=>{
+		if(!res[0] && !res[1] && !res[2]){
+			res[2] = Math.floor(Math.random() * 75);
+			res[1] = Math.floor(Math.random() * (100 - res[2]));
+			res[0] = 100 - res[2] - res[1];
+			for(let i = 0; i < res.length; i++){
+				setResult(res[i], i);
+			}
+			lightWinner();
+		}
 	});
+
+	crimeBtn = document.getElementById("crime");
+	crimeBtn.addEventListener("click", ()=>{
+		if(!res[0] && !res[1] && !res[2]){
+			res[2] = Math.floor(Math.random() * 75) + 25;
+			res[1] = Math.floor(Math.random() * (100 - res[2]));
+			res[0] = 100 - res[2] - res[1];
+			for(let i = 0; i < res.length; i++){
+				setResult(res[i], i);
+			}
+			lightWinner();
+		}
+	});
+
+	function lightWinner(){
+		for(let i = 0; i < res.length; i++){
+			candidate[i].classList.remove("main-cards-item-active");			
+		}
+		if(res[0] > res[1] && res[0] > res[2] ){
+			candidate[0].classList.add("main-cards-item-active");
+		} else if (res[1] > res[2] ) {
+			candidate[1].classList.add("main-cards-item-active");
+		} else{
+			candidate[2].classList.add("main-cards-item-active");
+		}
+	}
 });
