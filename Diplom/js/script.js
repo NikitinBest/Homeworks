@@ -174,8 +174,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	votingBtn = document.getElementById("voting");
 	votingBtn.addEventListener("click", ()=>{
 		if(!res[0] && !res[1] && !res[2]){
-			res[2] = Math.floor(Math.random() * 75);
-			res[1] = Math.floor(Math.random() * (100 - res[2]));
+			res[2] = Math.floor(Math.random() * 75) + 1;
+			res[1] = Math.floor(Math.random() * (90 - res[2])) + 1;
 			res[0] = 100 - res[2] - res[1];
 			for(let i = 0; i < res.length; i++){
 				setResult(res[i], i);
@@ -187,8 +187,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	crimeBtn = document.getElementById("crime");
 	crimeBtn.addEventListener("click", ()=>{
 		if(!res[0] && !res[1] && !res[2]){
-			res[2] = Math.floor(Math.random() * 75) + 25;
-			res[1] = Math.floor(Math.random() * (100 - res[2]));
+			res[2] = Math.floor(Math.random() * 65) + 25;
+			res[1] = Math.floor(Math.random() * (90 - res[2])) + 1;
 			res[0] = 100 - res[2] - res[1];
 			for(let i = 0; i < res.length; i++){
 				setResult(res[i], i);
