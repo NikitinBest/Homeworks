@@ -52,6 +52,22 @@ window.addEventListener("DOMContentLoaded", () => {
  		showCustomize(true);
 	}
 
+	//Validation
+	name.addEventListener('keypress', function() {
+        setTimeout(() => {
+            var res = /[^а-яА-Я ]/g.exec(this.value);
+            this.value = this.value.replace(res, '');
+        }, 0);
+    });
+
+    age.addEventListener('keypress', function(event) {
+        setTimeout(() => {
+	        target = event.target;
+		        var res = /[^0-9]/g.exec(target.value);
+		        target.value = target.value.replace(res, '');
+        }, 0);
+    });
+
 	//Slider
 
 	let prev = document.querySelector(".prev"),
@@ -107,6 +123,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	});
 
+
 	//init Main page
 	let candidate = document.getElementsByClassName("main-cards-item"),
 		cards = document.querySelector(".main-cards"),	
@@ -116,15 +133,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 	function initMain(){
- 		showCustomize(false);
 
-		for(let i = 0; i < resultCount.length; i++)
-			setResult(0, i);
-		res = [];
-		for(let i = 0; i < resultCount.length; i++){
-			candidate[i].classList.remove("main-cards-item-active");			
+		if(createCandidate()){
+
+	 		showCustomize(false);
+
+			for(let i = 0; i < resultCount.length; i++)
+				setResult(0, i);
+			res = [];
+			for(let i = 0; i < resultCount.length; i++){
+				candidate[i].classList.remove("main-cards-item-active");			
+			}
 		}
-		createCandidate();
 	}
 
 	function setResult (value, i){
@@ -133,35 +153,48 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function createCandidate(){
-		if(!candidate[2]){
-			cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
-			progressBar = document.querySelectorAll(".progress-bar"),
-			resultCount = document.getElementsByClassName("result-count");
-		}
+		if(name.value!="" && age.value!="" && bio.value!="" && (+age.value>=35 && +age.value<=70)){
 
-		let newImage = candidate[2].children[0].children[0],
-			newName = candidate[2].children[1],
-			newAge = candidate[2].children[2],
-			newSex = candidate[2].children[3],
-			newViews = candidate[2].children[4],
-			newBio = candidate[2].children[5];
+			if(!candidate[2]){
+				cards.appendChild(candidate[2] = candidate[0].cloneNode(true));
+				progressBar = document.querySelectorAll(".progress-bar"),
+				resultCount = document.getElementsByClassName("result-count");
+			}
 
-		newImage.style.backgroundImage = `url("./img/construct-${slideIndex + sex*4}.png")`; //image
-		newImage.style.backgroundSize = 'contain';
+			let newImage = candidate[2].children[0].children[0],
+				newName = candidate[2].children[1],
+				newAge = candidate[2].children[2],
+				newSex = candidate[2].children[3],
+				newViews = candidate[2].children[4],
+				newBio = candidate[2].children[5];
 
-		newName.textContent = name.value;
-		newAge.textContent = age.value;
-		if (age.value % 10 == 1) {
-			newAge.textContent += " год";
-		} else if (age.value % 10 > 1 && age.value % 10 < 5){
-			newAge.textContent += " года";			
+			newImage.style.backgroundImage = `url("./img/construct-${slideIndex + sex*4}.png")`; //image
+			newImage.style.backgroundSize = 'contain';
+
+			newName.textContent = name.value;
+			newAge.textContent = age.value;
+			if (age.value % 10 == 1) {
+				newAge.textContent += " год";
+			} else if (age.value % 10 > 1 && age.value % 10 < 5){
+				newAge.textContent += " года";			
+			} else {
+				newAge.textContent += " лет";			
+			}
+
+			newSex.textContent = (sex == 1) ? "Мужской" : "Женский";
+			newViews.textContent = views.options[views.selectedIndex].value;
+			newBio.textContent = bio.value;
+			return true;
 		} else {
-			newAge.textContent += " лет";			
-		}
+			let mes = "";
+			mes += (name.value=="") ? "Введите имя! \n" : "";
+			mes += (age.value=="") ? "Введите возраст! \n" :
+				   (+age.value<35 || +age.value>70) ? "Возраст в пределах 35-70 лет! \n" : "";
+			mes += (bio.value=="") ? "Введите биографию! \n" : "";
+			alert(mes);
 
-		newSex.textContent = (sex == 1) ? "Мужской" : "Женский";
-		newViews.textContent = views.options[views.selectedIndex].value;
-		newBio.textContent = bio.value;
+			return false;
+		}
 	}
 
 	readyBtn = document.getElementById("ready");
