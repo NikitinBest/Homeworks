@@ -39,9 +39,10 @@ describe("num", function(){
 
 });
 
-describe("num", function(){
-	it("Проверяем num", function(){
-		assert.equal(num, '5');
+describe("each", function(){
+	it("Проверяем each", function(){
+		assert.typeOfl(each, 'array');
+		assert.lengthOf(each, 5);		
 	});
 
 });
