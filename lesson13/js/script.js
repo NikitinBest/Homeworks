@@ -1,19 +1,15 @@
 $(document).ready(function() {
 
-	$(".container:first").on("click", function(event){
-		let target = event.target;
-		if(target == $(".main_btn:first") || target == $(".main_btna:first") || target == $("#sheldure")){
-			$(".overlay:first").fadeOut();
-			$(".modal:first").slideDown();
-		}
+	$(document).ready(function() {
+	    $(".main_btn:first, .main_btna:first, #sheldure").on("click", function(){
+	            $(".overlay:first").fadeIn();
+	            $(".modal:first").slideDown();
+	    });
+	    $(".close:first").on('click', function() {
+	        $(".overlay:first").fadeOut();
+	        $(".modal:first").slideUp();
+	    });
 	});
-
-
-	$(".close:first").on('click', function() {
-		$(".overlay:first").fadeIn();
-		$(".modal:first").slideUp();
-	});
-
 
 
 });
