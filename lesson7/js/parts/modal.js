@@ -1,6 +1,7 @@
 function modal(){
 	let more = document.getElementById("about"),
 		overlay = document.querySelector(".overlay"),
+		statusMessage = document.querySelector(".status"),
 		close = document.querySelector(".popup-close");
 	var target;
 
