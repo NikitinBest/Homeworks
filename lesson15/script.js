@@ -38,3 +38,10 @@ describe("num", function(){
 	});
 
 });
+
+describe("num", function(){
+	it("Проверяем num", function(){
+		assert.equal(num, '5');
+	});
+
+});
